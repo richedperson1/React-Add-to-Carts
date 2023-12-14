@@ -5,7 +5,7 @@ const Add_2_carts_main_fun = () => {
     return (
         <>
             <Carts_context_provider>
-                <div>Add_2_carts_main_fun</div>
+                <div className='text-white'>Add_2_carts_main_fun</div>
                 <Items_display />
             </Carts_context_provider>
         </>
