@@ -6,14 +6,29 @@ import faker from 'faker';
 
 const product_reducer = (state, action) => {
     switch (action.type) {
-        case ("add_carts"):
-            return { product: state.product, carts: [...state.carts, action.payload.add_products] }
+        case ("Add2Carts"):
+            const newAddCarts = [...state.carts]
+            newAddCarts[action.payload] = true
+            return { ...state, carts: [...newAddCarts] }
+
+        case ("removeFromCarts"):
+            const removeCarts = [...state.carts]
+            removeCarts[action.payload] = false
+            return { ...state, carts: [...removeCarts] }
+
+        case ("ToggleCarts"):
+            const newCartToggle = [...state.carts]
+            newCartToggle[action.payload] = !newCartToggle[action.payload]
+            return { ...state, carts: [...newCartToggle] }
 
         case ("SET_PRODUCTS"):
             return { 'products': action.payload.products, 'carts': action.payload.carts }
+        default:
+            return state;
     }
 
 }
+
 const Carts_context_provider = (props) => {
     const generateProductId = () => {
         return Math.floor(Math.random() * 10000); // You can adjust this to suit your requirements
@@ -41,9 +56,9 @@ const Carts_context_provider = (props) => {
                     return product;
                 })
             );
-            const products_details = { 'products': fake_product, carts: [] }
+            const products_details = { 'products': fake_product, carts: new Array(fake_product.length).fill(false) }
             set_product_carts({ type: 'SET_PRODUCTS', payload: products_details });
-            console.log("products_details,====>", product_carts)
+            // console.log("products_details,====>", product_carts)
         }
         Fake_product_generator()
 
