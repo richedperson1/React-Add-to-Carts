@@ -1,0 +1,30 @@
+.product-details::before {
+    content: "";
+    width: 100%;
+    height: 0%;
+    position: absolute;
+    transition: 0.5s;
+    opacity: var(--before-opacity, 1);
+}
+
+.product-details:hover::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    background-color: rgba(89, 208, 30, 0.903);
+}
+
+.product-details:focus {
+    opacity: -2;
+}
+
+.block-card::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    background-color: rgba(89, 208, 30, 0.903);
+}
